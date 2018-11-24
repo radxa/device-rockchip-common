@@ -150,6 +150,14 @@ if [ -d $OUT/system ]; then
   fi
   echo "done."
 fi
+if [ -f $UBOOT_PATH/idbloader.img ]
+then
+        echo -n "create idbloader.img..."
+        cp -a $UBOOT_PATH/idbloader.img $IMAGE_PATH/idbloader.img
+        echo "done."
+else
+        echo "$UBOOT_PATH/idbloader.img not fount! Please make it from $UBOOT_PATH first!"
+fi
 if [ -f $UBOOT_PATH/uboot.img ]
 then
 	echo -n "create uboot.img..."
