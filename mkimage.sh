@@ -38,6 +38,12 @@ BOARD_CONFIG=device/rockchip/common/device.mk
 
 PARAMETER=${TARGET_DEVICE_DIR}/parameter.txt
 
+if((BOARD_SYSTEMIMAGE_PARTITION_SIZE > 1500000000));then
+    PARAMETER=${TARGET_DEVICE_DIR}/parameter_system_2.0G.txt
+elif((BOARD_SYSTEMIMAGE_PARTITION_SIZE > 2147483648)); then
+    PARAMETER=${TARGET_DEVICE_DIR}/parameter_system_3.0G.txt
+fi
+
 KERNEL_SRC_PATH=`grep TARGET_PREBUILT_KERNEL ${BOARD_CONFIG} |grep "^\s*TARGET_PREBUILT_KERNEL *:= *[\w]*\s" |awk  '{print $3}'`
 
 [ $(id -u) -eq 0 ] || FAKEROOT=fakeroot
